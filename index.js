@@ -1,11 +1,12 @@
 const { PrismaClient } = require("@prisma/client");
 const express = require("express");
+const bcrypt = require("bcrypt")
 const BookRouter = require("./routes/book_mgt");
 const userRouter = require("./routes/user");
 const app =express();
 const portNumber = 4001
 const prisma = new PrismaClient();
-app.use(express.json()) 
+app.use(express.json())  
 
 
 

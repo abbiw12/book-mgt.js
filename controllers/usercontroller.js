@@ -1,22 +1,35 @@
 const prisma = require("../context")
-
+const bcrypt =require('bcrypt')
 
 const createUser = async(req,res) => {
     const {userName,email,password} =req.body
+
+    const hashPassword =await bcrypt.hash(password,10)
     // console.log(req.body)
     const newBooks = await prisma.user.create({
         data: {
             userName,
             email,
-            password
+            password:hashPassword
+        },
+        select: {
+            userName: true,
+            email:true
         }
+        
       
     })
     res.send(newBooks)
 }
 
 const getAllUsers = async(req,res) =>{
-    const allUsers =await prisma.user.findMany();
+    const allUsers =await prisma.user.findMany({
+        select: {
+            userName:true,
+            email: true
+        }
+    });
+
     res.json(allUsers)
 }
 const upDateUser =async(req,res) => {
@@ -32,6 +45,10 @@ const upDateUser =async(req,res) => {
         email,
         password,
       },
+      select: {
+        userName: true,
+        email:true
+      }
     });
     res.json(updatedUser)
 }
