@@ -1,5 +1,4 @@
 const express = require("express");
-const prisma = require("../context");
 const { userHomePage, aboutUser, userContact, usersID } = require("../controllers/variousUsersBookcontroller");
 const UserRouter = express.Router();
 

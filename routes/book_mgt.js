@@ -1,5 +1,4 @@
 const express = require("express");
-const prisma = require("../context");
 const { getAllBooks, createBook, upDateBook, deleteBook } = require("../controllers/book_mgtcontroller");
 const BookRouter = express.Router()
 
